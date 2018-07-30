@@ -24,10 +24,6 @@ output "salt-master" {
     value = "${openstack_networking_floatingip_v2.fip.0.address}"
 }
 
-output "client" {
-    value = "${openstack_networking_floatingip_v2.fip.0.address}"
-}
-
 output "salt-master-private" {
     value = "${openstack_compute_instance_v2.node.0.access_ip_v4}"
 }
@@ -67,7 +63,7 @@ resource "openstack_compute_instance_v2" "node" {
     name = "qa-${var.target_id}-${count.index}"
     image_name = "${var.os_image}"
     flavor_name = "${var.os_flavor}"
-    key_pair = "sesqa-automation"
+    key_pair = "mstan"
     security_groups = ["default"]
     metadata {
         demo = "metadata"
