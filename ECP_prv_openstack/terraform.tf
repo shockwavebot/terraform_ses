@@ -46,9 +46,7 @@ variable "repos" {
   default = {
   }
 }
-variable "target_id" {
-  default = "ses"
-}
+variable "target_id" {}
 
 resource "openstack_blockstorage_volume_v2" "disk" {
     depends_on = ["openstack_compute_instance_v2.node"]
@@ -60,7 +58,7 @@ resource "openstack_blockstorage_volume_v2" "disk" {
 resource "openstack_compute_instance_v2" "node" {
     region = ""
     count = "${var.nodes}"
-    name = "qa-${var.target_id}-${count.index}"
+    name = "${var.target_id}-${count.index}"
     image_name = "${var.os_image}"
     flavor_name = "${var.os_flavor}"
     key_pair = "mstan"

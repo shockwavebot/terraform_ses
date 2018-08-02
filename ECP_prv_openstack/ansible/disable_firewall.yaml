@@ -1,6 +1,6 @@
 ---
 - hosts:
-    - admin
+    - ses-nodes
   remote_user: root
   tasks:
       - name: disable firewall

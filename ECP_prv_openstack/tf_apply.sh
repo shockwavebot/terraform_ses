@@ -2,7 +2,6 @@
 
 sript_start_time=$(date +%s)
 
-> ~/.ssh/known_hosts
 terraform init
 terraform apply -auto-approve || (sleep 5;terraform apply -auto-approve)
 

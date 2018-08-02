@@ -1,7 +1,6 @@
 ---
 - hosts: 
-    - admin
-    - nodes
+    - ses-nodes
   vars:
     logs: "."
     password: "jeZ/p6jM.Gl0E"
