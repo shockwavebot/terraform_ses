@@ -9,6 +9,9 @@ source common_VARS.sh
 
 > ~/.ssh/known_hosts
 
+# ansible 
+[ -d /etc/ansible ] || sudo mkdir /etc/ansible
+[ -e /etc/ansible/hosts ] || sudo touch /etc/ansible/hosts
 sudo sed -i "/ses-nodes/d" /etc/ansible/hosts
 echo "[ses-nodes]" | sudo tee -a /etc/ansible/hosts
 

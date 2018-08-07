@@ -3,20 +3,6 @@
     - ses-nodes
   vars:
     logs: "."
-    password: "jeZ/p6jM.Gl0E"
   remote_user: root
-  name: Setup users
+  name: Configuring VMs for SES deployment
   tasks:
-      - user: name=jenkins shell=/bin/bash password={{ password }}
-      - name: Placing Default Key for jenkins
-        authorized_key: user=jenkins key={{lookup('file', '~/.ssh/id_rsa.pub') }}
-      - name: Placing Storage Automation Key for jenkins
-        authorized_key: user=jenkins key={{lookup('file', '~/.ssh/id_rsa.pub') }}
-      - name: Placing Key for root
-        authorized_key: user=root key={{lookup('file', '~/.ssh/id_rsa.pub') }}
-      - lineinfile: dest=/etc/sudoers state=present line='jenkins ALL = (root) NOPASSWD:ALL' validate='visudo -cf %s'
-      - lineinfile: dest=/etc/ssh/ssh_config state=present line='Host * \nStrictHostKeyChecking no'
-      - lineinfile: dest=/etc/ssh/ssh_config state=present line='Host * \nUserKnownHostsFile /home/jenkins/.ssh/known_hosts'
-      - mount: name=/mnt src=/dev/vdb fstype=xfs state=unmounted
-      - mount: name=/mnt src=/dev/vdb fstype=xfs state=absent
-
