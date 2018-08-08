@@ -1,0 +1,8 @@
+      - name: install salt minion
+        shell: zypper install -y salt-minion
+
+      - name: set master on minions
+        shell: |             
+                sed -i "/^#?master: /c\master: {{ salt_master_ip }}" /etc/salt/minion
+                systemctl enable salt-minion
+                systemctl start salt-minion

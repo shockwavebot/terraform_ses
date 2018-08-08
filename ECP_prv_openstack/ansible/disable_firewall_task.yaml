@@ -1,16 +1,10 @@
----
-- hosts:
-    - ses-nodes
-  remote_user: root
-  gather_facts: no
-  tasks:
       - name: disable firewall
         shell: |
             systemctl disable SuSEfirewall2.service
             systemctl stop SuSEfirewall2.service
             systemctl status SuSEfirewall2.service|grep 'Loaded:'|awk -F ';' '{print $2}'|grep disabled
-            #systemctl status SuSEfirewall2.service|grep 'inactive (dead)'
-            #register: out
+            systemctl status SuSEfirewall2.service|grep 'inactive (dead)'
+        register: out
 
-        #      - debug: var=out.stdout_lines
+      - debug: var=out.stdout_lines
 

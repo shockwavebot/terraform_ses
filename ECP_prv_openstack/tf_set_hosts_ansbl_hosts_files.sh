@@ -13,6 +13,7 @@ source common_VARS.sh
 [ -d /etc/ansible ] || sudo mkdir /etc/ansible
 [ -e /etc/ansible/hosts ] || sudo touch /etc/ansible/hosts
 sudo sed -i "/ses-nodes/d" /etc/ansible/hosts
+sudo sed -i "/salt-master/d" /etc/ansible/hosts
 echo "[ses-nodes]" | sudo tee -a /etc/ansible/hosts
 
 HOSTSFILE=/tmp/hosts
@@ -41,3 +42,10 @@ do
 done
 
 cat $HOSTSFILE | sudo tee -a /etc/hosts
+
+# add salt-master to ansible hosts file 
+SALT_MASTER_IP=$(terraform output salt-master)
+SALT_MASTER_IP_PRIVATE=$(terraform output salt-master-private)
+echo "[salt-master]" | sudo tee -a /etc/ansible/hosts
+echo $SALT_MASTER_IP | sudo tee -a /etc/ansible/hosts
+sed -i "/salt_master_ip/c\salt_master_ip: $SALT_MASTER_IP_PRIVATE" ansible/vars.yaml

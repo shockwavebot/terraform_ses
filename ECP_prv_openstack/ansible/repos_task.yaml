@@ -1,11 +1,3 @@
----
-- hosts:
-    - ses-nodes
-  remote_user: root
-  gather_facts: no
-  vars_files:
-    - ./artifacts.yaml
-  tasks:
       - name: zypp.conf allow vendor change
         lineinfile:
           path: /etc/zypp/zypp.conf
@@ -22,8 +14,6 @@
       - name: add repo
         shell: "zypper ar --no-gpgcheck {{ item.value.url }} {{ item.key }} "
         with_dict: "{{ artifacts }}"  
-        args:
-          warn: false
 
       - name: zypper refresh 
         shell: zypper --non-interactive --gpg-auto-import-keys refresh 

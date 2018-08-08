@@ -1,8 +1,0 @@
----
-- hosts: 
-    - ses-nodes
-  vars:
-    logs: "."
-  remote_user: root
-  name: Configuring VMs for SES deployment
-  tasks:
