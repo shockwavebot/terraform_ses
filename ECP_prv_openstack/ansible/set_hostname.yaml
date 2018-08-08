@@ -1,7 +1,6 @@
 ---
 - hosts:
     - ses-nodes
-  gather_facts: no
   vars:
     - domname: qalab 
   remote_user: root

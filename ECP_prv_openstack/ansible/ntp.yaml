@@ -22,6 +22,7 @@
         shell: |
             systemctl enable ntpd
             systemctl start ntpd
+            sntp -S -c 0.opensuse.pool.ntp.org
 
 - hosts:
     - ses-nodes:!salt-master
@@ -40,3 +41,14 @@
             path: /etc/ntp.conf
             line: "server {{ salt_master_ip }} iburst"
 
+      - name: start ntpd service 
+        shell: |
+          ntpdate -bs 0.opensuse.pool.ntp.org
+          systemctl enable ntpd
+          systemctl start ntpd
+          sleep 2
+          sntp -S -c {{ salt_master_ip }} || systemctl restart ntpd
+          sleep 3
+          sntp -S -c {{ salt_master_ip }}
+        register: out
+      - debug: var=out.stdout_lines

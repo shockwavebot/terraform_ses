@@ -2,6 +2,7 @@
 - hosts:
     - ses-nodes
   remote_user: root
+  gather_facts: no
   tasks:
       - name: copying hosts file from tmp
         copy:
@@ -9,5 +10,4 @@
           dest: /tmp/hosts_priv
       
       - name: add entries to hosts file in etc
-        shell: |
-            cat /tmp/hosts_priv|tee -a /etc/hosts
+        shell: cat /tmp/hosts_priv|tee -a /etc/hosts

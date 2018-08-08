@@ -1,0 +1,57 @@
+---
+- hosts:
+    - salt-master
+  remote_user: root
+  gather_subset: network
+  tasks:
+      - name: install salt master
+        shell: zypper install -y salt-master
+        args:
+          warn: false
+
+      - name: configure salt master
+        shell: |             
+            sed -i "/#interface: 0.0.0.0/c\interface: {{ ansible_default_ipv4.address }} " /etc/salt/master
+            systemctl enable salt-master
+            systemctl start salt-master
+        args:
+          warn: false
+
+- hosts:
+    - ses-nodes
+  remote_user: root
+  gather_facts: no
+  vars_files:
+    - ./vars.yaml
+  tasks:
+      - name: install salt minion
+        shell: zypper install -y salt-minion
+        args:
+          warn: false
+
+      - name: set master on minions
+        shell: |
+                sed -i "/^.master: /c\master: {{ salt_master_ip }} " /etc/salt/minion
+                systemctl enable salt-minion
+                systemctl start salt-minion
+        args:
+          warn: false
+
+- hosts:
+    - salt-master
+  remote_user: root
+  tasks:
+      - name: accept keys 
+        shell: |
+          salt-key --accept-all -y
+          sleep 1
+          salt '*' test.ping || echo
+          sleep 1
+          salt-key --accept-all -y
+          sleep 1
+          salt '*' test.ping || echo
+
+      - name: ping minions
+        shell: "salt '*' test.ping"
+        register: out
+      - debug: var=out.stdout_lines
