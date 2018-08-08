@@ -1,3 +1,9 @@
+---
+- hosts:
+    - salt-master
+  remote_user: root
+  gather_facts: no
+  tasks:
       - name: install ntp
         shell: zypper install -y ntp
         args:
@@ -12,21 +18,25 @@
                 server 2.opensuse.pool.ntp.org iburst
                 server 3.opensuse.pool.ntp.org iburst
 
-      - name: start ntpd 
+      - name: start ntpd
         shell: |
             systemctl enable ntpd
             systemctl start ntpd
 
-      - name: install salt master
-        shell: zypper install -y salt-master
+- hosts:
+    - ses-nodes:!salt-master
+  remote_user: root
+  gather_facts: no
+  vars_files:
+    - ./vars.yaml
+  tasks:
+      - name: install ntp
+        shell: zypper install -y ntp
         args:
           warn: false
 
-      - name: configure salt master
-        shell: |             
-            sed -i "/#interface: 0.0.0.0/c\interface: {{ ansible_default_ipv4.address }} " /etc/salt/master
-            systemctl enable salt-master
-            systemctl start salt-master
-        args:
-          warn: false
+      - name: configure ntp
+        lineinfile:
+            path: /etc/ntp.conf
+            line: "server {{ salt_master_ip }} iburst"
 

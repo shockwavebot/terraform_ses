@@ -1,8 +1,0 @@
-      - name: set hostname 
-        shell: |
-            hostnamectl set-hostname {{ ansible_hostname }}.{{ domname }}
-            cat /etc/hostname
-        register: out
-
-      - debug: var=out.stdout_lines
-

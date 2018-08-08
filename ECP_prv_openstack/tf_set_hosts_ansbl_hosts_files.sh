@@ -11,13 +11,14 @@ source common_VARS.sh
 
 # ansible 
 [ -d /etc/ansible ] || sudo mkdir /etc/ansible
-[ -e /etc/ansible/hosts ] || sudo touch /etc/ansible/hosts
-sudo sed -i "/ses-nodes/d" /etc/ansible/hosts
-sudo sed -i "/salt-master/d" /etc/ansible/hosts
-echo "[ses-nodes]" | sudo tee -a /etc/ansible/hosts
+[ -e /etc/ansible/hosts ] && sudo rm -f /etc/ansible/hosts
+sudo touch /etc/ansible/hosts
+#sudo sed -i "/ses-nodes/d" /etc/ansible/hosts
+#sudo sed -i "/salt-master/d" /etc/ansible/hosts
 
 HOSTSFILE=/tmp/hosts
-rm -rf $HOSTSFILE||true;touch $HOSTSFILE
+rm -f $HOSTSFILE||true;touch $HOSTSFILE
+echo "[ses-nodes]" | sudo tee -a /etc/ansible/hosts
 i=0
 for ipa in $(terraform output ip)
 do 

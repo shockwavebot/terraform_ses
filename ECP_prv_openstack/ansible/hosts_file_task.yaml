@@ -1,8 +1,0 @@
-      - name: copying hosts file from tmp
-        copy:
-          src: /tmp/hosts_priv
-          dest: /tmp/hosts_priv
-      
-      - name: add entries to hosts file in etc
-        shell: |
-            cat /tmp/hosts_priv|tee -a /etc/hosts

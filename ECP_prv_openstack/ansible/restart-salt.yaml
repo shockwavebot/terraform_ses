@@ -1,0 +1,18 @@
+---
+- hosts:
+    - salt-master
+  remote_user: root
+  gather_facts: no
+  tasks:
+      - name: restart salt master
+        shell: systemctl restart salt-master
+
+- hosts:
+    - ses-nodes
+  remote_user: root
+  gather_facts: no
+  tasks:
+      - name: restart salt minion
+        shell: systemctl restart salt-minion
+
+        
