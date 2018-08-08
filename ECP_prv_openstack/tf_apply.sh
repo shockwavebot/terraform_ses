@@ -27,4 +27,8 @@ deactivate
 
 set +ex 
 sript_end_time=$(date +%s);script_runtime=$(((sript_end_time-sript_start_time)/60))
+echo
+echo "============================"
 echo "Runtime in minutes : " $script_runtime
+echo "============================"
+echo

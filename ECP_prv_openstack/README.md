@@ -20,9 +20,25 @@ python -m pip install python-openstackclient
 ## Create VMs
 
 `terraform init`
+
 `terraform apply -auto-approve`
+
 `#terraform destroy # to destroy`
 
 ## How to access:
 
 `ssh -i ~/.ssh/mstan.pub root@10.86.1.71`
+
+## How to run:
+
+This script runs terraform apply command, then set IPs in /etc/hosts file and /etc/ansible/hosts file.
+After that, it runs ansible-playbooks
+
+Requirements:
+
+- Python virtual environments are created
+- Openstack is configured and keypair is present locally (for passwordless access to VMs)
+
+`./tf_apply.sh`
+
+
