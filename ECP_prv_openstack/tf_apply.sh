@@ -9,7 +9,7 @@ source ECP_provo.sh
 terraform init
 terraform apply -auto-approve || (sleep 5;terraform apply -auto-approve)
 
-sleep 30 
+sleep 160 
 
 ./tf_set_hosts_ansbl_hosts_files.sh
 
