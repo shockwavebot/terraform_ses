@@ -6,8 +6,8 @@
   tasks:
       - name: copying hosts file from tmp
         copy:
-          src: /tmp/hosts_priv
-          dest: /tmp/hosts_priv
+          src: /tmp/hosts
+          dest: /tmp/hosts
       
       - name: add entries to hosts file in etc
-        shell: cat /tmp/hosts_priv|tee -a /etc/hosts
+        shell: cat /tmp/hosts|tee -a /etc/hosts
