@@ -7,23 +7,20 @@ set -ex
 source ECP_provo.sh
 
 terraform init
-terraform apply -auto-approve || (sleep 5;terraform apply -auto-approve)
+terraform apply -auto-approve
 
-sleep 160 
+sleep 180 
 
+# generating /tmp/hosts and /tmp/ansible_hosts files 
 ./tf_set_hosts_ansbl_hosts_files.sh
 
-cd ansible
-source ANSBL/bin/activate
+MASTER=$(terraform output salt-master)
 
-ansible-playbook disable_firewall.yaml
-ansible-playbook hosts_file.yaml
-ansible-playbook set_hostname.yaml
-ansible-playbook repos.yaml
-ansible-playbook ntp.yaml
-ansible-playbook salt.yaml
-
-deactivate
+# TODO configure salt master
+# 	- apply all playbooks 
+# 	- transfer ssh keys 
+# 	- transfer playbooks
+# 	- transfer hosts and ansible_hosts files 
 
 set +ex 
 sript_end_time=$(date +%s);script_runtime=$(((sript_end_time-sript_start_time)/60))
