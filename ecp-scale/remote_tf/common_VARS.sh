@@ -1,0 +1,2 @@
+BASENAME="ses"
+DOMNAME="qalab"
