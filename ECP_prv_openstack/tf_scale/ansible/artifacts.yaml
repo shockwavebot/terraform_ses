@@ -1,0 +1,10 @@
+artifacts:
+  base_repo5:
+    src: /mnt/dist/ibs/SUSE:/SLE-12-SP3:/GA/images/repo/SLE-12-SP3-Server-POOL-x86_64-Media1
+    url: http://10.86.0.120/artifacts/ci/750f7f07945e25a78114ec6b10abf48414b46df420821813c812d0d7ed29a5a1/SLE-12-SP3-Server-POOL-x86_64-Build0473
+  ceph_repo5:
+    src: /mnt/dist/ibs/Devel:/Storage:/5.0/images/repo/SUSE-Enterprise-Storage-5-POOL-x86_64-Build0761-Media1
+    url: http://10.86.0.120/artifacts/ci/ecf571dff1fa8fadeef6dcada4919cba940d64218a9ce30af55042f7374dc74a/SUSE-Enterprise-Storage-5-POOL-x86_64-Build0761
+  internal_repo5:
+    src: /mnt/dist/ibs/Devel:/Storage:/5.0/images/repo/SUSE-Enterprise-Storage-5-POOL-Internal-x86_64-Build0761-Media
+    url: http://10.86.0.120/artifacts/ci/d2010adab94fec85ebd8d65dd79234ea268eca7588dc360cd5b27ef63d04ef86/SUSE-Enterprise-Storage-5-POOL-Internal-x86_64-Build0761

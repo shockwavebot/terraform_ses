@@ -1,0 +1,54 @@
+---
+- hosts:
+    - salt-master
+  remote_user: root
+  gather_facts: no
+  tasks:
+      - name: install ntp
+        shell: zypper install -y ntp
+        args:
+          warn: false
+
+      - name: configure ntp
+        blockinfile:
+            dest: /etc/ntp.conf
+            block: |
+                server 0.opensuse.pool.ntp.org iburst
+                server 1.opensuse.pool.ntp.org iburst
+                server 2.opensuse.pool.ntp.org iburst
+                server 3.opensuse.pool.ntp.org iburst
+
+      - name: start ntpd
+        shell: |
+            systemctl enable ntpd
+            systemctl start ntpd
+            sntp -S -c 0.opensuse.pool.ntp.org
+
+- hosts:
+    - ses-nodes:!salt-master
+  remote_user: root
+  gather_facts: no
+  vars_files:
+    - ./vars.yaml
+  tasks:
+      - name: install ntp
+        shell: zypper install -y ntp
+        args:
+          warn: false
+
+      - name: configure ntp
+        lineinfile:
+            path: /etc/ntp.conf
+            line: "server {{ salt_master_ip }} iburst"
+
+      - name: start ntpd service 
+        shell: |
+          ntpdate -bs 0.opensuse.pool.ntp.org
+          systemctl enable ntpd
+          systemctl start ntpd
+          sleep 2
+          sntp -S -c {{ salt_master_ip }} || systemctl restart ntpd
+          sleep 3
+          sntp -S -c {{ salt_master_ip }}
+        register: out
+      - debug: var=out.stdout_lines
