@@ -1,9 +1,9 @@
 {
     "os_flavor": "m1.medium",
-    "os_image": "SLES12-SP3",
+    "os_image": "sles12sp3mstanimg",
     "disk_size": "30",
     "disk_num": "2",
-    "nodes": "5",
+    "nodes": "1",
     "target_id" : "ses" 
 }
 
