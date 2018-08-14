@@ -37,6 +37,7 @@ sleep $SLEEP
 ./tf_set_hosts_ansbl_hosts_files.sh
 
 cd ansible
+ansible-playbook disable_ipv6.yaml
 ansible-playbook disable_firewall.yaml
 ansible-playbook hosts_file.yaml
 ansible-playbook set_hostname.yaml
