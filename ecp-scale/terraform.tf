@@ -33,7 +33,7 @@ resource "openstack_compute_instance_v2" "node" {
     count = "1"
     name = "scale-deploy"
     image_name = "CentOS-7"
-    flavor_name = "m1.medium"
+    flavor_name = "m1.large"
     key_pair = "mstan"
     security_groups = ["default"]
     metadata {
