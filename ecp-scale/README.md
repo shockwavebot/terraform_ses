@@ -26,3 +26,23 @@ Edit before run:
 
 To destroy the env: `cd remote_tf;source ECP_provo.sh;terraform destroy -auto-approve`
 
+#### Prepare artifacts 
+
+Make sure `remote_tf/ansible/artifacts.yaml` are updated with latest repos
+
+```
+- name: ceph_repo5
+  delivery: mirror
+  url: /mnt/dist/install/SUSE-Enterprise-Storage-5.5-M9/
+  filters: x86_64 Media1 iso$
+- name: base_repo5
+  delivery: mirror
+  url: /mnt/dist/ibs/SUSE:/SLE-12-SP3:/GA/images/repo/
+  filters: Server-POOL-x86_64 Media1$
+
+source VENV36/bin/activate
+python lib/artifact.py deliver --input artifacts/desc/mstan-5.5-x86_64-product.yaml --delivery artifacts/delivery-prv.suse.net.conf
+python lib/artifact.py determine --input artifacts/desc/mstan-5.5-x86_64-product.yaml --delivery artifacts/delivery-prv.suse.net.conf
+```
+
+
