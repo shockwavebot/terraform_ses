@@ -20,7 +20,7 @@ echo "[ses-nodes]" | sudo tee -a $ANSBL_HOSTS
 i=0
 for ipa in $(terraform output private-ip-mon)
 do 
-  echo $ipa mon-${BASENAME}-${i}.${DOMNAME} mon-${BASENAME}-${i} >> $HOSTSFILE
+  echo $ipa mon${BASENAME}${i}.${DOMNAME} mon${BASENAME}${i} >> $HOSTSFILE
   echo $ipa | sudo tee -a $ANSBL_HOSTS
   let i+=1
 done 
@@ -28,7 +28,7 @@ done
 i=0
 for ipa in $(terraform output private-ip-osd)
 do
-  echo $ipa osd-${BASENAME}-${i}.${DOMNAME} osd-${BASENAME}-${i} >> $HOSTSFILE
+  echo $ipa ${BASENAME}osd-${i}.${DOMNAME} ${BASENAME}osd-${i} >> $HOSTSFILE
   echo $ipa | sudo tee -a $ANSBL_HOSTS
   let i+=1
 done
