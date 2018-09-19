@@ -45,6 +45,8 @@ ansible-playbook repos.yaml
 ansible-playbook ntp.yaml
 ansible-playbook salt.yaml
 
+# TODO
+# @salt-master sed -i "/ipv6-loopback/c\::1             localhost ipv6-localhost ipv6-loopback $(hostname)" /etc/hosts
 set +ex
 
 EOF
