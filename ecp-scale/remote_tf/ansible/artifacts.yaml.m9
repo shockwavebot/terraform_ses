@@ -3,6 +3,6 @@ artifacts:
     src: /mnt/dist/ibs/SUSE:/SLE-12-SP3:/GA/images/repo/SLE-12-SP3-Server-POOL-x86_64-Media1
     url: http://10.86.0.120/artifacts/ci/750f7f07945e25a78114ec6b10abf48414b46df420821813c812d0d7ed29a5a1/SLE-12-SP3-Server-POOL-x86_64-Build0473
   ceph_repo5:
-    src: /mnt/dist/install/SUSE-Enterprise-Storage-5.5-M9/SUSE-Enterprise-Storage-5-Internal-x86_64-M9-DVD.iso
-    url: http://10.86.0.120/artifacts/ci/ee5030a09f2742162f47e40ee56ebaa0934f82aa122062e178690e9079b1d48c/SUSE-Enterprise-Storage-5-Internal-x86_64-M9-DVD.iso
+    src: /mnt/dist/install/SUSE-Enterprise-Storage-5.5-M9/SUSE-Enterprise-Storage-5-DVD-x86_64-Build0805-Media1.iso
+    url: http://10.86.0.120/artifacts/ci/3c1e8ea62d247c9578e2ac8b1a7923afe31b5f2e24a1c67f5651c6a79de35200/SUSE-Enterprise-Storage-5-DVD-x86_64-Build0805-Media1
 

@@ -44,7 +44,7 @@ variable "target_id" {}
 
 resource "openstack_blockstorage_volume_v2" "osd_disk" {
     depends_on = ["openstack_compute_instance_v2.osd_node"]
-    name = "qa-volume-${var.target_id}-${ count.index / var.disk_num }-${ count.index % var.disk_num }"
+    name = "qavolume-${var.target_id}-${ count.index / var.disk_num }-${ count.index % var.disk_num }"
     count = "${ var.osd_nodes * var.disk_num }"
     size = "${var.disk_size}"
 }
@@ -52,7 +52,7 @@ resource "openstack_blockstorage_volume_v2" "osd_disk" {
 resource "openstack_compute_instance_v2" "mon_node" {
     region = ""
     count = "${var.mon_nodes}"
-    name = "mon-${var.target_id}-${count.index}"
+    name = "mon${var.target_id}${count.index}"
     image_name = "${var.os_image}"
     flavor_name = "${var.os_flavor}"
     key_pair = "mstan"
@@ -68,7 +68,7 @@ resource "openstack_compute_instance_v2" "mon_node" {
 resource "openstack_compute_instance_v2" "osd_node" {
     region = ""
     count = "${var.osd_nodes}"
-    name = "osd-${var.target_id}-${count.index}"
+    name = "${var.target_id}osd-${count.index}"
     image_name = "${var.os_image}"
     flavor_name = "${var.os_flavor}"
     key_pair = "mstan"
