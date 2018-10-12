@@ -45,4 +45,17 @@ python lib/artifact.py deliver --input artifacts/desc/mstan-5.5-x86_64-product.y
 python lib/artifact.py determine --input artifacts/desc/mstan-5.5-x86_64-product.yaml --delivery artifacts/delivery-prv.suse.net.conf
 ```
 
-
+Example of policy.cfg:
+```
+cluster-ceph/cluster/*.sls
+config/stack/default/global.yml
+config/stack/default/ceph/cluster.yml
+role-master/cluster/monses0*.sls
+role-admin/cluster/monses[012]*.sls
+role-mon/cluster/monses[012]*.sls
+role-mgr/cluster/monses[012]*.sls
+role-mds/cluster/monses[12]*.sls
+role-rgw/cluster/monses[12]*.sls
+profile-default/cluster/*.sls
+profile-default/stack/default/ceph/minions/*yml
+```

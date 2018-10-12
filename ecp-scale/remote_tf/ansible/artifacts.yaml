@@ -4,4 +4,4 @@ artifacts:
     url: http://10.86.0.120/artifacts/ci/750f7f07945e25a78114ec6b10abf48414b46df420821813c812d0d7ed29a5a1/SLE-12-SP3-Server-POOL-x86_64-Build0473
   ceph_repo5:
     src: /mnt/dist/install/SUSE-Enterprise-Storage-5.5-M9/SUSE-Enterprise-Storage-5-DVD-x86_64-M9-DVD1.iso
-    url: http://10.86.0.120/artifacts/ci/9161e559817d49366a52d7ba5876430db57fcb43e6adb6bdddefa662b784be0c/SUSE-Enterprise-Storage-5-DVD-x86_64-M9-DVD1
+    url: http://10.86.0.120/artifacts/ci/9c15b273ab0dc8616672c04d00de472ad3478091f46336eca825d55eed2889b4/SUSE-Enterprise-Storage-5-DVD-x86_64-Build0830-Media1
