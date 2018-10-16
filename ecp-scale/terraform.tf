@@ -31,7 +31,7 @@ output "salt-master-private" {
 resource "openstack_compute_instance_v2" "node" {
     region = ""
     count = "1"
-    name = "scale-deploy"
+    name = "ses-tf-deploy"
     image_name = "CentOS-7"
     flavor_name = "m1.large"
     key_pair = "mstan"
